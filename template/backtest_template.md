@@ -143,7 +143,7 @@ percentile = (spd - min_spd) / (max_spd - min_spd) × 100
 ```
 Summary: 908/2554 underperformed (64.45% win rate)
 ✅ Strategy meets performance requirement (≥ 50% win rate vs. uniform DCA).
-✅ Strategy is ready for submission.
+✅ Strategy is ready for production.
 ```
 
 | Metric | Value | Requirement |
@@ -151,7 +151,7 @@ Summary: 908/2554 underperformed (64.45% win rate)
 | Windows tested | 2,554 | All rolling 1-year windows |
 | Losses | 908 | Windows where dynamic < uniform |
 | Win rate | 64.45% | ≥ 50% required |
-| Status | ✅ Passed | Strategy ready for submission |
+| Status | ✅ Passed | Strategy ready for deployment |
 
 ### Final Model Score
 

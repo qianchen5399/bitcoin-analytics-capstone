@@ -201,7 +201,7 @@ The model requires the following columns from the CoinMetrics BTC data:
 
 ## Potential Enhancements
 
-While effective as a simple trend filter, the baseline has significant limitations that you should address in your capstone project:
+While effective as a simple trend filter, the baseline has significant limitations that you should address in your model development:
 
 | Limitation | Potential Solution |
 |------------|--------------------|
