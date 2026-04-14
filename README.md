@@ -117,100 +117,80 @@ This repository provides a template and framework for:
 └── README.md                        # Project overview and navigation
 ```
 ---
+## Data Sources
 
-## Getting Started
+This project uses two primary data sources.
 
-### 1. Installation
+### Coin Metrics
+Coin Metrics provides daily Bitcoin market and on-chain data used for:
+- price context
+- market structure
+- accumulation regime analysis
+- feature construction
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/TrilemmaFoundation/bitcoin-analytics-capstone-template
-    cd bitcoin-analytics-capstone-template
-    ```
+### Polymarket
+Polymarket provides prediction-market data used to construct:
+- daily activity features
+- liquidity-filtered “smart money” aggregates
+- market participation and sentiment proxies
 
-2.  **Setup environment:**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # Windows: venv\\Scripts\\activate
-    pip install -r requirements.txt
-    ```
-
-### 2. Data Acquisition
-
-The `data/` directory contains historical BTC price data and specific Polymarket datasets (Politics, Finance, Crypto).
-
-Data can be [downloaded manually from Google Drive](https://drive.google.com/drive/folders/1gizJ_n-QCnE8qrFM-BU3J_ZpaR3HCjn7?usp=sharing) into the `data/` folder, or you can use the automated script:
-
-```bash
-python data/download_data.py
-```
-
-**Included Data:**
-* **CoinMetrics BTC Data**: Daily OHLCV and network metrics.
-  * **Bitcoin Price Source of Truth**: The `PriceUSD` column in the CoinMetrics data is the source of truth for BTC-USD prices. This is renamed to `PriceUSD_coinmetrics` in the codebase. This is the only column you hypothetically need to build a model (along with the datetime index, of course).
-* **Polymarket Data**: High-fidelity parquet files containing trades, odds history, and market metadata.
-  * **Timestamp note**: Some parquet timestamp columns are stored with incorrect
-    units (millisecond values encoded as microseconds). Direct reads can show
-    dates near 1970. Use the built-in loaders in `template/prelude_template.py`
-    or `eda/eda_starter_template.py`, which detect and correct these values at
-    runtime.
-
-**External Data:**
-External data is encouraged; students are responsible for ensuring that the data license permits all project participants to access and use (i.e., no proprietary data).
-
-**System Requirements:**
-Assume a modern laptop specification (think 16GB M4 Air).
+A central part of this project was testing whether these external market signals contain useful information for Bitcoin accumulation after proper filtering, aggregation, and leak-aware alignment.
 
 ---
 
-## Model Development Guidelines
+## Method Overview
 
-The framework includes a **Template Baseline** in `template/`. This serves as a starting point, currently implementing a simple 200-day Moving Average filter (accumulating more when price is below the MA).
+The project followed four broad stages:
 
-### Exploration Path: Prediction Market Integration
+1. **Data validation and temporal integrity checks**  
+   Verified date coverage, repaired timestamp interpretation issues, and aligned Coin Metrics and Polymarket data at the daily level.
 
-A core opportunity lies in evolving this baseline into a market-aware strategy, perhaps by leveraging **Polymarket data**.
+2. **Feature engineering**  
+   Constructed Bitcoin market features and liquidity-filtered Polymarket activity features, with emphasis on daily aggregation and leak-aware design.
 
-**Illustrative Examples:**
-*   **Election Probabilities**: You might investigate if political event probabilities correlate with BTC volatility.
-*   **Economic Indicators**: Consider checking if prediction markets for Fed rate cuts act as leading indicators.
-*   **Retail Sentiment**: Specific "Polymarket Crypto" markets could potentially serve as proxies for retail sentiment or exuberance.
+3. **Model development**  
+   Compared multiple dynamic DCA strategy variants, including naive signal-driven versions, conservative overlays, and regime-conditional approaches.
 
-### Running Backtests
-
-**Backtest Date Range:**
-* **Range:** `2018-01-01` to `2025-12-31` (inclusive; daily frequency; no days should be missing)
-* The backtest engine uses rolling 1-year windows starting from the start date, generating daily windows until the end date.
-
-**Baseline Model:**
-```bash
-python -m template.backtest_template
-```
-
-**Reference Implementation (Example 1):**
-```bash
-python -m example_1.run_backtest
-```
+4. **Backtesting and interpretation**  
+   Evaluated the resulting strategies against uniform DCA using rolling one-year windows within the sponsor-provided evaluation framework.
 
 ---
 
-## Key Performance Indicators
+## Final Model
 
-When evaluating strategies, you might consider the following metrics (which are calculated by the automated backtest engine):
+The final model is a conservative, regime-conditional dynamic accumulation framework that uses liquidity-filtered Polymarket activity features as a conditional overlay within a long-only DCA structure.
 
-1.  **Win Rate**: Useful for understanding consistency—how often does the strategy outperform a standard DCA over 1-year windows?
-2.  **SPD (Sats Per Dollar)**: A measure of raw efficiency—are you acquiring more bitcoin for the same capital?
-3.  **Model Score**: A composite metric that balances performance (Win Rate) with risk-adjusted returns, offering a holistic view of strategy health.
-
-## Licensing
-
-*   **Code:** This repository, including its analysis and documentation, is open-sourced under the **MIT License**.
-*   **Data:** The data provided (e.g., CoinMetrics, Polymarket) is not covered by the MIT license and retains its original licensing terms. Please refer to the respective data providers for their terms of use.
+Its purpose is not aggressive market timing. Instead, it seeks to modestly improve accumulation efficiency relative to uniform DCA while preserving interpretability, stability, and disciplined capital deployment.
 
 ---
 
-## Contacts & Community
+## Limitations
 
-* **App:** [stackingsats.org](https://www.stackingsats.org/)
-* **Website:** [trilemma.foundation](https://www.trilemma.foundation/)
-* **Foundation:** [Trilemma Foundation](https://github.com/TrilemmaFoundation)
+Several limitations are important when interpreting these results:
+
+- Polymarket history is much shorter than Bitcoin history
+- raw external sentiment features are noisy and unstable
+- the observed edge is modest rather than transformational
+- backtest performance does not guarantee future outperformance
+- results depend on historical relationships that may weaken across regimes
+
+---
+
+## Public Artifact
+
+Public-facing project summary:  
+**[Add public article / blog / LinkedIn post link here]**
+
+This repository provides the full analytical support for the public-facing summary.
+
+---
+
+## Author
+
+**Nick Chen**  
+Georgia Institute of Technology  
+Online Master of Science in Analytics (OMSA)
+
+## Disclaimer
+
+This repository was created for academic, research, and portfolio purposes as part of the Georgia Tech OMSA Practicum. It should not be interpreted as financial advice or a recommendation to buy or sell bitcoin.
