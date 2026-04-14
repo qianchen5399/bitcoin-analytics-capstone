@@ -1,20 +1,76 @@
-# Stacking Sats: Improving Bitcoin Accumulation 
+# Bitcoin Analytics Practicum: Dynamic Bitcoin Accumulation with Prediction-Market Signals
 
-Building and improving data-driven Bitcoin accumulation strategies, with a focus on utilizing signal from predicion market data. 
+This repository contains my Georgia Tech OMSA Practicum project on dynamic Bitcoin accumulation. The project studies whether external market information, especially liquidity-filtered prediction-market activity from Polymarket, can improve Bitcoin accumulation efficiency relative to a uniform Dollar-Cost Averaging (DCA) benchmark.
 
-See [stackingsats.org](https://www.stackingsats.org/) for more information.
+For final review, please start with:
+
+- **`deliverables/bitcoin_practicum_final.ipynb`** — main final notebook
+
+Note:
+- **`deliverables/bitcoin_eda_modeling_support.ipynb`** is retained as a duplicate / backup copy of the main notebook.
+- Additional exploratory and development materials are included elsewhere in the repository for context and reproducibility.
+
+---
+
+## Project Question
+
+Can external signals improve Bitcoin accumulation without turning a disciplined DCA process into unstable market timing?
+
+More specifically, this project evaluates whether Polymarket-derived features, when filtered, aggregated, and used conservatively, can provide useful conditioning signals for dynamic Bitcoin accumulation.
+
 
 ---
 
-## The Mission: Exploring Institutional Bitcoin Accumulation
 
-As Bitcoin matures as an institutional asset, standard Dollar Cost Averaging (DCA) is a strong baseline, but there may be room for optimization. This project facilitates the design of **data-driven, long-only** accumulation strategies. The aim is to explore methods that maintain DCA’s systematic discipline while potentially **improving acquisition efficiency** within fixed budgets and time horizons.
+## Key Takeaway
 
-### Latest Tournament
-Trilemma Foundation hosts tournaments to find the most efficient accumulation models.
-* **Current/Recent:** [Stacking Sats Tournament - MSTR 2025](https://github.com/TrilemmaFoundation/stacking-sats-tournament-mstr-2025)
+Uniform DCA remained a strong and difficult-to-beat baseline throughout the project.
+
+Raw prediction-market data did not appear useful as a direct timing signal on its own. However, after liquidity filtering, aggregation, and conservative regime-aware integration, Polymarket-derived activity features provided a modest but defensible improvement within a dynamic Bitcoin accumulation framework.
+
+The main contribution of this project is not extreme outperformance, but a careful demonstration that external signals may add value only when they are structured thoughtfully, evaluated conservatively, and used as conditional overlays rather than aggressive predictors.
 
 ---
+
+## Final Deliverables
+
+The main final deliverables for this project are located in the `deliverables/` folder.
+
+- **`deliverables/bitcoin_practicum_final.ipynb`**  
+  Main final notebook containing the final research narrative, feature construction, modeling workflow, backtesting results, interpretation, and limitations.
+
+- **`deliverables/EDA_Executive.ipynb`**  
+  Condensed exploratory analysis highlighting the most important data validation and early findings.
+
+- **`deliverables/EDA.ipynb`**  
+  Full exploratory data analysis notebook with supporting visualizations and intermediate analysis.
+
+- **`deliverables/regime_conditional_dca_v2.py`**  
+  Final strategy implementation used in the main analysis.
+
+- **`deliverables/backtest_template.py`**  
+  Backtesting script used to evaluate model performance against the benchmark framework.
+
+---
+
+## What to Read First
+
+If you are reviewing this repository for the first time, the recommended order is:
+
+1. **`deliverables/bitcoin_practicum_final.ipynb`**  
+   Main final analysis and conclusions
+
+2. **`deliverables/EDA_Executive.ipynb`**  
+   Shorter summary of the exploratory groundwork
+
+3. **`deliverables/EDA.ipynb`**  
+   Full exploratory analysis and supporting visuals
+
+Other folders in the repository document earlier development history, templates, intermediate experiments, and reproducibility materials.
+
+---
+
+
 
 ## Repository Overview
 
@@ -28,18 +84,37 @@ This repository provides a template and framework for:
 
 ```text
 .
-├── template/                        # CORE FRAMEWORK (Start here)
-│   ├── prelude_template.py          # Data loading & Polymarket utilities
-│   ├── model_development_template.py # IMPLEMENT YOUR MODEL LOGIC HERE
-│   ├── backtest_template.py         # Evaluation engine
-│   └── *.md                         # Documentation for model logic & backtesting
-├── example_1/                       # REFERENCE IMPLEMENTATION
-│   ├── run_backtest.py              # How to run the example
-│   └── model_development_example_1.py # Example Polymarket + MVRV integration
-├── data/                            # Bitcoin & Polymarket source data
-├── output/                          # Results and visualizations
-└── tests/                           # Unit tests for core logic
-```
+├── deliverables/                    # FINAL PROJECT MATERIALS (Start here)
+│   ├── bitcoin_practicum_final.ipynb # Main final notebook for review
+│   ├── bitcoin_eda_modeling_support.ipynb # Duplicate / backup of the main notebook
+│   ├── EDA.ipynb                    # Full exploratory data analysis
+│   ├── EDA_Executive.ipynb          # Condensed executive-style EDA
+│   ├── regime_conditional_dca_v2.py # Final strategy implementation
+│   └── backtest_template.py         # Backtesting script used for evaluation
+├── data/                            # Bitcoin and Polymarket source data
+│   ├── Coin Metrics/                # BTC market and on-chain data
+│   ├── Polymarket/                  # Prediction-market data
+│   └── download_data.py             # Data download utility
+├── eda/                             # EDA DEVELOPMENT HISTORY
+│   ├── EDA.ipynb                    # Main EDA working notebook
+│   ├── EDA_Executive.ipynb          # Executive EDA working version
+│   ├── EDA_v6.ipynb                 # Intermediate EDA version
+│   ├── audit_raw_timestamps.py      # Timestamp auditing and validation
+│   ├── bitcoin_eda_modeling_support.ipynb # Intermediate support notebook
+│   ├── btc_polymarket_eda_pipeline.py # EDA pipeline script
+│   ├── eda_starter_template.md      # Initial EDA guidance
+│   ├── eda_starter_template.py      # Starter EDA template
+│   ├── gt_msa_s26_eda_outline.md    # EDA outline and project framing
+│   └── initial_EDA_*.ipynb          # Earlier exploratory notebook versions
+├── template/                        # MODEL DEVELOPMENT HISTORY
+│   ├── *.py                         # Iterative model strategy files and templates
+│   └── *.md                         # Documentation for model logic and experiments
+├── example_1/                       # REFERENCE EXAMPLE MATERIALS
+│   └── ...                          # Example strategy and usage files
+├── tests/                           # Tests and validation utilities
+├── requirements.txt                 # Project dependencies
+├── LICENSE                          # Repository license
+└── README.md                        # Project overview and navigation
 
 ---
 
