@@ -83,7 +83,7 @@ This repository provides a template and framework for:
 ### Repository Structure
 
 ```text
-.
+
 ├── deliverables/                    # FINAL PROJECT MATERIALS (Start here)
 │   ├── bitcoin_practicum_final.ipynb # Main final notebook for review
 │   ├── bitcoin_eda_modeling_support.ipynb # Duplicate / backup of the main notebook
@@ -115,7 +115,7 @@ This repository provides a template and framework for:
 ├── requirements.txt                 # Project dependencies
 ├── LICENSE                          # Repository license
 └── README.md                        # Project overview and navigation
-
+```
 ---
 
 ## Getting Started
