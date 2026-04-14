@@ -171,7 +171,7 @@ Several limitations are important when interpreting these results:
 ## Public Artifact
 
 Public-facing project summary:  
-**[Add public article / blog / LinkedIn post link here]**
+**[Signal or Noise? Using Polymarket Features in Dynamic Bitcoin Accumulation](https://medium.com/@nickchen0195/signal-or-noise-using-polymarket-features-in-dynamic-bitcoin-accumulation-8ac451dc767a)**
 
 This repository provides the full analytical support for the public-facing summary.
 
