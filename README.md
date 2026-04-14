@@ -18,9 +18,7 @@ Can external signals improve Bitcoin accumulation without turning a disciplined 
 
 More specifically, this project evaluates whether Polymarket-derived features, when filtered, aggregated, and used conservatively, can provide useful conditioning signals for dynamic Bitcoin accumulation.
 
-
 ---
-
 
 ## Key Takeaway
 
@@ -70,20 +68,14 @@ Other folders in the repository document earlier development history, templates,
 
 ---
 
-
-
 ## Repository Overview
 
-This repository provides a template and framework for:
-1.  **Exploratory Data Analysis (EDA)** of Bitcoin price action and on-chain properties.
-2.  **Feature Engineering** that integrates prediction market sentiment (Polymarket), macro indicators, and on-chain metrics.
-3.  **Strategy Development** for daily purchase schedules (dynamic DCA).
-4.  **Backtesting & Evaluation** against uniform DCA benchmarks.
+This repository includes the final notebook, supporting EDA materials, strategy development files, and backtesting components used throughout the project.
 
 ### Repository Structure
 
 ```text
-
+.
 ├── deliverables/                    # FINAL PROJECT MATERIALS (Start here)
 │   ├── bitcoin_practicum_final.ipynb # Main final notebook for review
 │   ├── bitcoin_eda_modeling_support.ipynb # Duplicate / backup of the main notebook
@@ -160,7 +152,7 @@ The project followed four broad stages:
 
 The final model is a conservative, regime-conditional dynamic accumulation framework that uses liquidity-filtered Polymarket activity features as a conditional overlay within a long-only DCA structure.
 
-Its purpose is not aggressive market timing. Instead, it seeks to modestly improve accumulation efficiency relative to uniform DCA while preserving interpretability, stability, and disciplined capital deployment.
+Rather than acting as an aggressive timing system, the model is designed to modestly improve accumulation efficiency relative to uniform DCA while preserving interpretability, stability, and disciplined capital deployment.
 
 ---
 
